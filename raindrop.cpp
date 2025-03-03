@@ -105,7 +105,7 @@ int main() {
     attrs.border_pixel         = 0;
     attrs.colormap             = colormap;
     attrs.background_pixmap    = None;  // Transparency
-    attrs.event_mask           = None;  // Only keyboard events
+    attrs.event_mask           = None;  // Don't capture any events
     unsigned long attr_mask    = CWOverrideRedirect | CWBorderPixel | CWColormap | CWBackPixmap | CWEventMask;
 
     Window win = XCreateWindow(display, root, 0, 0, width, height, 0, depth, InputOutput, visual, attr_mask, &attrs);
