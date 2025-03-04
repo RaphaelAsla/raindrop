@@ -11,8 +11,7 @@
 #include <random>
 #include <thread>
 
-constexpr bool FILL_UP = true;  // Gradually fill up the screen with water
-
+constexpr bool   FILL_UP      = true;  // Gradually fill up the screen with water
 constexpr int    NUM_DROPS    = 500;
 constexpr double DROP_LENGTH  = 8.0;
 constexpr double DROP_WIDTH   = 1.25;
@@ -104,8 +103,10 @@ int main() {
         vinfo.visual = DefaultVisual(display, screen);
         vinfo.depth  = DefaultDepth(display, screen);
     }
+
     Visual* visual = vinfo.visual;
     int     depth  = vinfo.depth;
+
     std::cout << "Using visual ID=0x" << std::hex << vinfo.visualid << std::dec << ", Depth=" << depth << std::endl;
 
     Colormap colormap = XCreateColormap(display, root, visual, AllocNone);
@@ -161,6 +162,7 @@ int main() {
         XCloseDisplay(display);
         return 1;
     }
+
     cairo_t* cr = cairo_create(surface);
 
     std::random_device              rd;
