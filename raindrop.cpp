@@ -11,10 +11,13 @@
 #include <random>
 #include <thread>
 
-constexpr int    NUM_DROPS   = 500;
-constexpr double DROP_LENGTH = 5.0;
-constexpr double DROP_WIDTH  = 2.2;
-constexpr auto   FRAME_DELAY = std::chrono::microseconds(1000000 / 30);
+constexpr bool FILL_UP = true;  // Gradually fill up the screen with water
+
+constexpr int    NUM_DROPS    = 500;
+constexpr double DROP_LENGTH  = 8.0;
+constexpr double DROP_WIDTH   = 1.25;
+constexpr auto   FRAME_DELAY  = std::chrono::microseconds(1000000 / 30);
+double           time_elapsed = 0.0;
 
 struct Raindrop {
     double x, y;
@@ -23,14 +26,14 @@ struct Raindrop {
     Raindrop() = default;
 
     Raindrop(double width, double height, std::mt19937& gen) {
-        std::uniform_real_distribution<> dis_x(0, width);
-        std::uniform_real_distribution<> dis_y(0, height);
-        std::uniform_real_distribution<> vel_y(1.0, 8.0);
+        std::uniform_real_distribution<double> dis_x(0, width);
+        std::uniform_real_distribution<double> dis_y(0, height);
+        std::uniform_real_distribution<double> vel(1.0, 8.0);
 
         x  = dis_x(gen);
         y  = dis_y(gen);
-        vy = vel_y(gen);
-        vx = 1.0;  // You can change that, I like the drops moving slightly towards right
+        vy = vel(gen);
+        vx = 1;  // You can change that, I like the drops moving slightly towards right
     }
 
     void Tick(double width, double height) {
@@ -39,13 +42,20 @@ struct Raindrop {
 
         double tail_length = (fabs(vx) + fabs(vy));
 
-        if (x + tail_length * DROP_LENGTH < 0) {
+        if (x + tail_length * DROP_LENGTH / 2.0 < 0) {
             x = width;
-        } else if (x - tail_length * DROP_LENGTH > width) {
+        } else if (x - tail_length * DROP_LENGTH / 2.0 > width) {
             x = 0;
         }
 
-        if (y - tail_length * DROP_LENGTH > height) {
+        if constexpr (FILL_UP) {
+            double y_offset = height - (time_elapsed * 0.5);
+            double wave_y   = y_offset + 5.0 * sin((x * 0.05) + time_elapsed) * cos((x * -0.025) + time_elapsed);
+
+            if (y > wave_y) {
+                y = 0;
+            }
+        } else if (y - tail_length * DROP_LENGTH / 2.0 > height) {
             y = 0;
         }
     }
@@ -53,8 +63,8 @@ struct Raindrop {
     void Draw(cairo_t* cr) {
         double theta = atan2(vy, vx) - M_PI / 2.0;  // Direction vector
 
-        double base_radius = DROP_WIDTH;
-        double tri_height  = (fabs(vx) + fabs(vy)) * DROP_LENGTH;
+        double base_radius = DROP_WIDTH * 2.0;
+        double tri_height  = (fabs(vx) + fabs(vy)) * DROP_LENGTH / 2.0;
 
         cairo_save(cr);
 
@@ -165,19 +175,35 @@ int main() {
 
     bool running = true;
     while (running) {
-        for (auto& drop : drops) {
-            drop.Tick(width, height);
-        }
+        time_elapsed += 0.1;
 
         cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
         cairo_set_source_rgba(cr, 0, 0, 0, 0);  // Transparent background (clear surface)
         cairo_paint(cr);
         cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 
-        cairo_set_source_rgba(cr, 0.4, 0.8, 1.0, 0.4);  // Raindrop color
+        cairo_set_source_rgba(cr, 0.4, 0.8, 1.0, 0.5);  // Rain color
 
         for (auto& drop : drops) {
+            drop.Tick(width, height);
             drop.Draw(cr);
+        }
+
+        /* Fill the screen the water over time */
+        if constexpr (FILL_UP) {
+            double y_offset = height - (time_elapsed * NUM_DROPS * 0.001);
+            cairo_move_to(cr, 0, y_offset);
+            for (int x = 0; x < width; x += 10) {
+                double y = y_offset + 5.0 * sin((x * 0.05) + time_elapsed) * cos((x * -0.025) + time_elapsed);
+                if (y <= 0) {
+                    time_elapsed = 0;
+                }
+                cairo_line_to(cr, x, y);
+            }
+            cairo_line_to(cr, width, height);
+            cairo_line_to(cr, 0, height);
+            cairo_close_path(cr);
+            cairo_fill(cr);
         }
 
         cairo_surface_flush(surface);

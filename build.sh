@@ -2,7 +2,7 @@
 
 CXX=clang++
 CXXFLAGS="-Wall"
-LDFLAGS="-lX11 -lXfixes -lcairo"
+LDFLAGS="-lX11 -lXfixes -lcairo -O3"
 
 TARGET="raindrop"
 SRCS="raindrop.cpp"
