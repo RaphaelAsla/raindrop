@@ -27,7 +27,7 @@ struct Raindrop {
     Raindrop(double width, double height, std::mt19937& gen) {
         std::uniform_real_distribution<double> dis_x(0, width);
         std::uniform_real_distribution<double> dis_y(0, height);
-        std::uniform_real_distribution<double> vel(1.0, 8.0);
+        std::uniform_real_distribution<double> vel(2.0, 8.0);
 
         x  = dis_x(gen);
         y  = dis_y(gen);
@@ -83,6 +83,81 @@ struct Raindrop {
     }
 };
 
+struct Ball {
+    double y, x;
+    double radius;
+    double rotation;
+    double rotation_speed;
+
+    Ball() {
+        x              = 1920;
+        y              = 0;
+        radius         = 15;
+        rotation       = 0.0;
+        rotation_speed = 0.3;
+    }
+
+    void Tick(double width, double height) {
+        double y_offset = height - (time_elapsed * NUM_DROPS * 0.001);
+        double u        = (x * 0.05) + time_elapsed;
+        double v        = (x * -0.025) + time_elapsed;
+        double wave_y   = y_offset + 10.0 * sin(u) * cos(v);
+
+        // First derivative (slope)
+        double slope = 10.0 * (0.05 * cos(u) * cos(v) + 0.025 * sin(u) * sin(v));
+
+        // Second derivative (acceleration)
+        double acceleration = -0.03125 * sin(u) * cos(v);
+
+        if (acceleration < 0) {
+            x -= 1.1;
+        } else {
+            x -= 0.9;
+        }
+
+        if (x < 0) {
+            x = width;
+        }
+
+        y = wave_y - radius * 0.6;
+
+        rotation += rotation_speed * slope;
+    }
+
+    void Draw(cairo_t* cr) {
+        const int num_segments            = 6;
+        double    colors[num_segments][3] = {
+            {1.0, 0.0, 0.0},  // Red
+            {0.0, 0.0, 1.0},  // Blue
+            {1.0, 1.0, 0.0},  // Yellow
+            {0.0, 1.0, 0.0},  // Green
+            {1.0, 1.0, 1.0},  // White
+            {1.0, 0.5, 0.0}   // Orange
+        };
+
+        cairo_save(cr);
+        cairo_translate(cr, x, y);
+        cairo_rotate(cr, rotation);
+
+        double angle_step = 2 * M_PI / num_segments;
+
+        for (int i = 0; i < num_segments; i++) {
+            cairo_set_source_rgb(cr, colors[i][0], colors[i][1], colors[i][2]);
+
+            cairo_move_to(cr, 0, 0);
+            cairo_arc(cr, 0, 0, radius, i * angle_step, (i + 1) * angle_step);
+            cairo_close_path(cr);
+            cairo_fill(cr);
+        }
+
+        cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
+        cairo_arc(cr, 0, 0, radius * 0.2, 0, 2 * M_PI);
+        cairo_fill(cr);
+
+        cairo_restore(cr);
+    }
+};
+
 int main() {
     Display* display = XOpenDisplay(nullptr);
     if (!display) {
@@ -94,6 +169,9 @@ int main() {
     Window root   = RootWindow(display, screen);
     int    width  = DisplayWidth(display, screen);
     int    height = DisplayHeight(display, screen);
+
+    width  = 1920;
+    height = 1080;
 
     std::cout << "Screen info: Width=" << width << ", Height=" << height << ", Default Depth=" << DefaultDepth(display, screen) << std::endl;
 
@@ -173,6 +251,8 @@ int main() {
         drop = Raindrop(width, height, gen);
     }
 
+    Ball ball{};
+
     std::cout << "Setup complete, starting animation..." << std::endl;
 
     bool running = true;
@@ -183,6 +263,9 @@ int main() {
         cairo_set_source_rgba(cr, 0, 0, 0, 0);  // Transparent background (clear surface)
         cairo_paint(cr);
         cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
+
+        ball.Tick(width, height);
+        ball.Draw(cr);
 
         cairo_set_source_rgba(cr, 0.4, 0.8, 1.0, 0.5);  // Rain color
 
@@ -196,12 +279,14 @@ int main() {
             double y_offset = height - (time_elapsed * NUM_DROPS * 0.001);
             cairo_move_to(cr, 0, y_offset);
             for (int x = 0; x < width; x += 10) {
-                double y = y_offset + 5.0 * sin((x * 0.05) + time_elapsed) * cos((x * -0.025) + time_elapsed);
+                double y = y_offset + 10.0 * sin((x * 0.05) + time_elapsed) * cos((x * -0.025) + time_elapsed);
+
                 if (y <= 0) {
                     time_elapsed = 0;
                 }
                 cairo_line_to(cr, x, y);
             }
+
             cairo_line_to(cr, width, height);
             cairo_line_to(cr, 0, height);
             cairo_close_path(cr);
