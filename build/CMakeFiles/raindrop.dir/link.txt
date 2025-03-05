@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/raindrop.dir/link.d CMakeFiles/raindrop.dir/src/main.cpp.o -o raindrop  /usr/lib/libglfw.so.3.4 libs/libglad.a -lX11 -lXfixes /usr/lib/libGLX.so /usr/lib/libOpenGL.so

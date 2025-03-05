@@ -1,7 +1,0 @@
-/home/reavey/code/cpp/raindrop/build/CMakeFiles/run.dir
-/home/reavey/code/cpp/raindrop/build/CMakeFiles/raindrop.dir
-/home/reavey/code/cpp/raindrop/build/CMakeFiles/edit_cache.dir
-/home/reavey/code/cpp/raindrop/build/CMakeFiles/rebuild_cache.dir
-/home/reavey/code/cpp/raindrop/build/libs/CMakeFiles/glad.dir
-/home/reavey/code/cpp/raindrop/build/libs/CMakeFiles/edit_cache.dir
-/home/reavey/code/cpp/raindrop/build/libs/CMakeFiles/rebuild_cache.dir
