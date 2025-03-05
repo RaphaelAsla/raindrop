@@ -1,9 +1,9 @@
 [
 {
   "directory": "/home/reavey/code/cpp/raindrop/build",
-  "command": "/usr/bin/c++  -isystem /home/reavey/code/cpp/raindrop/libs/glad/include -std=gnu++20 -Wall -Wextra -o CMakeFiles/Raindrop.dir/src/main.cpp.o -c /home/reavey/code/cpp/raindrop/src/main.cpp",
+  "command": "/usr/bin/c++  -isystem /home/reavey/code/cpp/raindrop/libs/glad/include -std=gnu++20 -Wall -Wextra -o CMakeFiles/raindrop.dir/src/main.cpp.o -c /home/reavey/code/cpp/raindrop/src/main.cpp",
   "file": "/home/reavey/code/cpp/raindrop/src/main.cpp",
-  "output": "CMakeFiles/Raindrop.dir/src/main.cpp.o"
+  "output": "CMakeFiles/raindrop.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/reavey/code/cpp/raindrop/build/libs",

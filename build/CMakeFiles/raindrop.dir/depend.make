@@ -1,2 +1,2 @@
-# Empty dependencies file for Raindrop.
+# Empty dependencies file for raindrop.
 # This may be replaced when dependencies are built.

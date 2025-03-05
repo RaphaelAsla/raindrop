@@ -1,8 +1,8 @@
-Raindrop: \
+raindrop: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/Scrt1.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/crtbeginS.o \
-  CMakeFiles/Raindrop.dir/src/main.cpp.o \
+  CMakeFiles/raindrop.dir/src/main.cpp.o \
   /usr/lib/libglfw.so.3.4 \
   libs/libglad.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libX11.so \
@@ -51,7 +51,7 @@ Raindrop: \
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/crtbeginS.o:
 
-CMakeFiles/Raindrop.dir/src/main.cpp.o:
+CMakeFiles/raindrop.dir/src/main.cpp.o:
 
 /usr/lib/libglfw.so.3.4:
 

@@ -25,14 +25,15 @@ add_subdirectory("libs")
 
 # Add the source files
 file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
+file(GLOB_RECURSE INCLUDE_FILES "includes/*.hpp")
 
 set(MAIN_SOURCE "src/main.cpp")
 
 # Set the executable
-add_executable(Raindrop ${SOURCE_FILES} ${MAIN_SOURCE})
+add_executable(raindrop ${INCLUDE_FILES} ${SOURCE_FILES} ${MAIN_SOURCE})
 
 # Link libraries
-target_link_libraries(Raindrop
+target_link_libraries(raindrop
 	glfw
     glad
     X11
@@ -41,4 +42,4 @@ target_link_libraries(Raindrop
 )
 
 # Optionally, add custom compile options
-target_compile_options(Raindrop PRIVATE -Wall -Wextra)
+target_compile_options(raindrop PRIVATE -Wall -Wextra)

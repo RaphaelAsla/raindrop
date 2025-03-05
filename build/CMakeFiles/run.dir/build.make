@@ -67,7 +67,7 @@ include CMakeFiles/run.dir/compiler_depend.make
 include CMakeFiles/run.dir/progress.make
 
 CMakeFiles/run: raindrop
-	raindrop
+	/home/reavey/code/cpp/raindrop/build/raindrop
 
 CMakeFiles/run.dir/codegen:
 .PHONY : CMakeFiles/run.dir/codegen

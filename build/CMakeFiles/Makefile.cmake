@@ -70,6 +70,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/run.dir/DependInfo.cmake"
-  "CMakeFiles/Raindrop.dir/DependInfo.cmake"
+  "CMakeFiles/raindrop.dir/DependInfo.cmake"
   "libs/CMakeFiles/glad.dir/DependInfo.cmake"
   )

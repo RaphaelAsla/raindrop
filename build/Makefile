@@ -130,17 +130,17 @@ run/fast:
 .PHONY : run/fast
 
 #=============================================================================
-# Target rules for targets named Raindrop
+# Target rules for targets named raindrop
 
 # Build rule for target.
-Raindrop: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Raindrop
-.PHONY : Raindrop
+raindrop: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raindrop
+.PHONY : raindrop
 
 # fast build rule for target.
-Raindrop/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raindrop.dir/build.make CMakeFiles/Raindrop.dir/build
-.PHONY : Raindrop/fast
+raindrop/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raindrop.dir/build.make CMakeFiles/raindrop.dir/build
+.PHONY : raindrop/fast
 
 #=============================================================================
 # Target rules for targets named glad
@@ -160,7 +160,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raindrop.dir/build.make CMakeFiles/Raindrop.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raindrop.dir/build.make CMakeFiles/raindrop.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -168,7 +168,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raindrop.dir/build.make CMakeFiles/Raindrop.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raindrop.dir/build.make CMakeFiles/raindrop.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -176,7 +176,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raindrop.dir/build.make CMakeFiles/Raindrop.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raindrop.dir/build.make CMakeFiles/raindrop.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -188,8 +188,8 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... run"
-	@echo "... Raindrop"
 	@echo "... glad"
+	@echo "... raindrop"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

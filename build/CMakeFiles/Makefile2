@@ -63,12 +63,12 @@ CMAKE_BINARY_DIR = /home/reavey/code/cpp/raindrop/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Raindrop.dir/all
+all: CMakeFiles/raindrop.dir/all
 all: libs/all
 .PHONY : all
 
 # The main recursive "codegen" target.
-codegen: CMakeFiles/Raindrop.dir/codegen
+codegen: CMakeFiles/raindrop.dir/codegen
 codegen: libs/codegen
 .PHONY : codegen
 
@@ -78,7 +78,7 @@ preinstall: libs/preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/run.dir/clean
-clean: CMakeFiles/Raindrop.dir/clean
+clean: CMakeFiles/raindrop.dir/clean
 clean: libs/clean
 .PHONY : clean
 
@@ -105,7 +105,7 @@ libs/clean: libs/CMakeFiles/glad.dir/clean
 # Target rules for target CMakeFiles/run.dir
 
 # All Build rule for target.
-CMakeFiles/run.dir/all:
+CMakeFiles/run.dir/all: CMakeFiles/raindrop.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num= "Built target run"
@@ -113,7 +113,7 @@ CMakeFiles/run.dir/all:
 
 # Build rule for subdir invocation for target.
 CMakeFiles/run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/reavey/code/cpp/raindrop/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/reavey/code/cpp/raindrop/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/run.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/reavey/code/cpp/raindrop/build/CMakeFiles 0
 .PHONY : CMakeFiles/run.dir/rule
@@ -123,7 +123,7 @@ run: CMakeFiles/run.dir/rule
 .PHONY : run
 
 # codegen rule for target.
-CMakeFiles/run.dir/codegen:
+CMakeFiles/run.dir/codegen: CMakeFiles/raindrop.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/codegen
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num= "Finished codegen for target run"
 .PHONY : CMakeFiles/run.dir/codegen
@@ -134,36 +134,36 @@ CMakeFiles/run.dir/clean:
 .PHONY : CMakeFiles/run.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Raindrop.dir
+# Target rules for target CMakeFiles/raindrop.dir
 
 # All Build rule for target.
-CMakeFiles/Raindrop.dir/all: libs/CMakeFiles/glad.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raindrop.dir/build.make CMakeFiles/Raindrop.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raindrop.dir/build.make CMakeFiles/Raindrop.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num=1,2 "Built target Raindrop"
-.PHONY : CMakeFiles/Raindrop.dir/all
+CMakeFiles/raindrop.dir/all: libs/CMakeFiles/glad.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raindrop.dir/build.make CMakeFiles/raindrop.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raindrop.dir/build.make CMakeFiles/raindrop.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num=3,4 "Built target raindrop"
+.PHONY : CMakeFiles/raindrop.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Raindrop.dir/rule: cmake_check_build_system
+CMakeFiles/raindrop.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/reavey/code/cpp/raindrop/build/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Raindrop.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/raindrop.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/reavey/code/cpp/raindrop/build/CMakeFiles 0
-.PHONY : CMakeFiles/Raindrop.dir/rule
+.PHONY : CMakeFiles/raindrop.dir/rule
 
 # Convenience name for target.
-Raindrop: CMakeFiles/Raindrop.dir/rule
-.PHONY : Raindrop
+raindrop: CMakeFiles/raindrop.dir/rule
+.PHONY : raindrop
 
 # codegen rule for target.
-CMakeFiles/Raindrop.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raindrop.dir/build.make CMakeFiles/Raindrop.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num=1,2 "Finished codegen for target Raindrop"
-.PHONY : CMakeFiles/Raindrop.dir/codegen
+CMakeFiles/raindrop.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raindrop.dir/build.make CMakeFiles/raindrop.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num=3,4 "Finished codegen for target raindrop"
+.PHONY : CMakeFiles/raindrop.dir/codegen
 
 # clean rule for target.
-CMakeFiles/Raindrop.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raindrop.dir/build.make CMakeFiles/Raindrop.dir/clean
-.PHONY : CMakeFiles/Raindrop.dir/clean
+CMakeFiles/raindrop.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raindrop.dir/build.make CMakeFiles/raindrop.dir/clean
+.PHONY : CMakeFiles/raindrop.dir/clean
 
 #=============================================================================
 # Target rules for target libs/CMakeFiles/glad.dir
@@ -172,7 +172,7 @@ CMakeFiles/Raindrop.dir/clean:
 libs/CMakeFiles/glad.dir/all:
 	$(MAKE) $(MAKESILENT) -f libs/CMakeFiles/glad.dir/build.make libs/CMakeFiles/glad.dir/depend
 	$(MAKE) $(MAKESILENT) -f libs/CMakeFiles/glad.dir/build.make libs/CMakeFiles/glad.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num=3,4 "Built target glad"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num=1,2 "Built target glad"
 .PHONY : libs/CMakeFiles/glad.dir/all
 
 # Build rule for subdir invocation for target.
@@ -189,7 +189,7 @@ glad: libs/CMakeFiles/glad.dir/rule
 # codegen rule for target.
 libs/CMakeFiles/glad.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f libs/CMakeFiles/glad.dir/build.make libs/CMakeFiles/glad.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num=3,4 "Finished codegen for target glad"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/reavey/code/cpp/raindrop/build/CMakeFiles --progress-num=1,2 "Finished codegen for target glad"
 .PHONY : libs/CMakeFiles/glad.dir/codegen
 
 # clean rule for target.

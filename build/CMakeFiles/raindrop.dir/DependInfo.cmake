@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/reavey/code/cpp/raindrop/src/main.cpp" "CMakeFiles/Raindrop.dir/src/main.cpp.o" "gcc" "CMakeFiles/Raindrop.dir/src/main.cpp.o.d"
-  "" "Raindrop" "gcc" "CMakeFiles/Raindrop.dir/link.d"
+  "/home/reavey/code/cpp/raindrop/src/main.cpp" "CMakeFiles/raindrop.dir/src/main.cpp.o" "gcc" "CMakeFiles/raindrop.dir/src/main.cpp.o.d"
+  "" "raindrop" "gcc" "CMakeFiles/raindrop.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
